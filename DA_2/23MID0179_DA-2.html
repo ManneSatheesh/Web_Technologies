@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Recipe Maker</title>
+	<style>
+		header{
+			background-image: linear-gradient(rgba(240, 128, 128, 0.7), rgba(240, 128, 128, 0.7)), url('kitchen.png');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			color:white;
+			padding: 150px;
+			text-align: center;
+		}
+		body{
+			margin: 0;
+			font-family: Arial,Helvetica,sans-serif;
+			background-color: beige;
+		}
+		h1{
+			margin:10px;
+		}
+		.recipes{
+			display: grid;
+			grid-template-columns:repeat(3,minmax(280px,1fr));
+			gap: 30px;
+			padding:30px;
+			max-width: 1400px;
+			margin: 0 auto;
+		}
+		.card{
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+			transition:transform 0.3s ease,box-shadow 0.3s ease;
+			background-color: white;
+		}
+		.card:hover{
+			transform:translateY(-8px);
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+		}
+		.card img{
+			width: 100%;
+			height:250px;
+			max-height: 300px;
+			object-fit: cover;
+			display: block;
+		}
+		.content{
+			padding: 15px;
+		}
+		.content h2{
+			margin-top: 0;
+			color:lightpink;
+		}
+		.nutrition-info{
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin: 10px 0;
+			padding: 10px;
+			background-color: #f9f9f9;
+			border-radius: 5px;
+			font-size: 0.85em;
+		}
+		.nutrition-info span{
+			background-color: #fff;
+			padding: 5px 10px;
+			border-radius: 3px;
+			border: 1px solid #e0e0e0;
+		}
+		.Ingredients{
+			margin:10px 5px 10px;
+			padding:0px 20px;
+		}
+		.Ingredients li{
+			margin: 0px 0px 0px 10px;
+
+		}
+		.Instructions{
+			margin:10px 5px 10px;
+			padding:0px 20px;
+		}
+		.Instructions li{
+			margin: 5px 0px;
+			line-height: 1.6;
+		}
+		footer{
+			background-color: lightpink;
+			color:lightgrey;
+			text-align: center;
+			padding: 15px;
+			font-size: 14px;
+		}
+
+		@media (max-width: 1024px) {
+			.recipes{
+				grid-template-columns: repeat(2, 1fr);
+				gap: 25px;
+				padding: 20px;
+			}
+			header{
+				padding: 80px 20px;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.recipes{
+				grid-template-columns: 1fr;
+				gap: 20px;
+				padding: 15px;
+			}
+			header{
+				padding: 60px 15px;
+			}
+			header h1{
+				font-size: 1.5em;
+			}
+			header p{
+				font-size: 0.9em;
+			}
+			.card img{
+				height: 200px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			header{
+				padding: 40px 10px;
+			}
+			header h1{
+				font-size: 1.3em;
+			}
+			.card img{
+				height: 180px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header><h1>Make your Recipes with your Guide</h1>
+	<p>Simple,tasty, and easy-to-cook meals with simple Steps and easier Understanding</p></header>
+
+	<main class="recipes">
+		<div class="card">
+			<img src="pasta.png" alt="Pasta">
+			<div class="content">
+				<h2>Creamy pasta</h2>
+				<div class="nutrition-info">
+					<span><strong>Calories:</strong> 520</span>
+					<span><strong>Protein:</strong> 15g</span>
+					<span><strong>Carbs:</strong> 68g</span>
+					<span><strong>Fat:</strong> 20g</span>
+				</div>
+
+				<div class="recipe-details">
+					<h3>Ingredients</h3>
+					<ul class="Ingredients">
+						<li><b>200g Pasta:</b> Acts as the main base of the dish and provides energy.</li>
+            			<li><b>1 Cup Cream:</b> Creates a rich, smooth, and creamy sauce.</li>
+            			<li><b>2 Cloves Garlic:</b> Adds aroma and enhances flavor.</li>
+            			<li><b>Salt and Pepper:</b> Used to balance and enhance taste.</li>
+					</ul>
+
+					<h3>Instructions</h3>
+					<ol class="Instructions">
+						<li>Boil pasta in salted water until soft but slightly firm (8-10 minutes).</li>
+						<li>Heat oil in a pan and cook chopped garlic until it smells good.</li>
+						<li>Add cream to the pan and add salt and pepper.</li>
+						<li>Drain pasta and mix it with the creamy sauce for 2-3 minutes.</li>
+						<li>Add your favorite toppings (parsley, cheese) and serve hot.</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<img src="chicken.png" alt="Chicken Stir-Fry">
+			<div class="content">
+				<h2>Chicken Stir-Fry</h2>
+				<div class="nutrition-info">
+					<span><strong>Calories:</strong> 380</span>
+					<span><strong>Protein:</strong> 32g</span>
+					<span><strong>Carbs:</strong> 25g</span>
+					<span><strong>Fat:</strong> 18g</span>
+				</div>
+
+				<div class="recipe-details">
+					<h3>Ingredients</h3>
+					<ul class="Ingredients">
+						<li><b>300g Chicken Breast:</b> Lean protein source.</li>
+            			<li><b>Mixed Vegetables:</b> Add color, nutrients, and crunch.</li>
+            			<li><b>Soy Sauce:</b> Provides salty and umami flavor.</li>
+            			<li><b>Sesame Oil:</b> Adds strong aroma.</li>
+            			<li><b>Ginger:</b> Enhances taste and aids digestion.</li>
+					</ul>
+
+					<h3>Instructions</h3>
+					<ol class="Instructions">
+						<li>Cut chicken breast into small pieces.</li>
+						<li>Heat sesame oil in a large pan over high heat.</li>
+						<li>Cook chicken pieces while stirring until golden brown (5-6 minutes).</li>
+						<li>Add mixed vegetables and cook while stirring for 3-4 minutes.</li>
+						<li>Add soy sauce and chopped ginger, mix well and serve hot.</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<img src="margherita_pizza.png" alt="Margherita Pizza">
+			<div class="content">
+				<h2>Margherita Pizza</h2>
+				<div class="nutrition-info">
+					<span><strong>Calories:</strong> 650</span>
+					<span><strong>Protein:</strong> 24g</span>
+					<span><strong>Carbs:</strong> 75g</span>
+					<span><strong>Fat:</strong> 28g</span>
+				</div>
+
+				<div class="recipe-details">
+					<h3>Ingredients</h3>
+					<ul class="Ingredients">
+						<li><b>Pizza Dough:</b> Forms the base.</li>
+            			<li><b>Tomato Sauce:</b> Adds moisture and tanginess.</li>
+            			<li><b>Mozzarella Cheese:</b> Melts smoothly.</li>
+            			<li><b>Fresh Basil:</b> Adds aroma and freshness.</li>
+            			<li><b>Olive Oil:</b> Improves texture and flavor.</li>
+					</ul>
+
+					<h3>Instructions</h3>
+					<ol class="Instructions">
+						<li>Heat oven to 250°C (480°F).</li>
+						<li>Flatten pizza dough on a baking sheet.</li>
+						<li>Spread tomato sauce evenly over the dough.</li>
+						<li>Top with mozzarella cheese and pour olive oil on top.</li>
+						<li>Bake for 12-15 minutes until edges are crispy. Add fresh basil and serve.</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+				<img src="caesar_salad.png" alt="Caesar Salad">
+			<div class="content">
+				<h2>Caesar Salad</h2>
+				<div class="nutrition-info">
+					<span><strong>Calories:</strong> 320</span>
+					<span><strong>Protein:</strong> 12g</span>
+					<span><strong>Carbs:</strong> 18g</span>
+					<span><strong>Fat:</strong> 22g</span>
+				</div>
+
+				<div class="recipe-details">
+					<h3>Ingredients</h3>
+					<ul class="Ingredients">
+						<li><b>Romaine Lettuce:</b> Crunchy base ingredient.</li>
+            			<li><b>Caesar Dressing:</b> Creamy flavor component.</li>
+            			<li><b>Parmesan Cheese:</b> Adds saltiness.</li>
+            			<li><b>Croutons:</b> Provide crunch.</li>
+            			<li><b>Lemon Juice:</b> Balances richness.</li>
+					</ul>
+
+					<h3>Instructions</h3>
+					<ol class="Instructions">
+						<li>Wash lettuce well and cut into small pieces.</li>
+						<li>Place cut lettuce in a large bowl.</li>
+						<li>Add Caesar dressing and mix until lettuce is fully covered.</li>
+						<li>Top with shredded parmesan cheese and croutons.</li>
+						<li>Pour lemon juice over the salad and serve right away.</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<img src="chocolate_brownie.png" alt="Chocolate Brownies">
+			<div class="content">
+				<h2>Chocolate Brownies</h2>
+				<div class="nutrition-info">
+					<span><strong>Calories:</strong> 450</span>
+					<span><strong>Protein:</strong> 6g</span>
+					<span><strong>Carbs:</strong> 52g</span>
+					<span><strong>Fat:</strong> 26g</span>
+				</div>
+
+				<div class="recipe-details">
+					<h3>Ingredients</h3>
+					<ul class="Ingredients">
+						<li><b>Dark Chocolate:</b> Primary flavor ingredient.</li>
+            			<li><b>Butter:</b> Adds moisture and richness.</li>
+            			<li><b>Eggs:</b> Bind ingredients together.</li>
+            			<li><b>Sugar:</b> Sweetens the brownies.</li>
+           				 <li><b>Flour:</b> Provides structure.</li>
+					</ul>
+
+					<h3>Instructions</h3>
+					<ol class="Instructions">
+						<li>Heat oven to 180°C and put oil/butter in a baking pan.</li>
+						<li>Melt chocolate and butter together in a bowl.</li>
+						<li>Mix eggs and sugar until light and airy.</li>
+						<li>Add chocolate mixture and gently mix in flour.</li>
+						<li>Bake for 25-30 minutes. Let it cool before cutting.</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<img src="vegetable_curry.png" alt="Vegetable Curry">
+			<div class="content">
+				<h2>Vegetable Curry</h2>
+				<div class="nutrition-info">
+					<span><strong>Calories:</strong> 280</span>
+					<span><strong>Protein:</strong> 8g</span>
+					<span><strong>Carbs:</strong> 32g</span>
+					<span><strong>Fat:</strong> 14g</span>
+				</div>
+
+				<div class="recipe-details">
+					<h3>Ingredients</h3>
+					<ul class="Ingredients">
+						<li>3 cups mixed vegetables</li>
+						<li>1 can coconut milk</li>
+						<li>2 tbsp curry powder</li>
+						<li>1 onion, chopped</li>
+						<li>2 cloves garlic, minced</li>
+					</ul>
+
+					<h3>Instructions</h3>
+					<ol class="Instructions">
+						<li>Cook chopped onion and garlic in oil until soft.</li>
+						<li>Add curry powder and cook for 1 minute.</li>
+						<li>Add vegetables and mix well.</li>
+						<li>Pour in coconut milk and cook slowly for 15 minutes.</li>
+						<li>Serve hot with rice or naan bread.</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer style="color:black">Recipe Website | Designed by M VENKATA SATHEESH 23MID0179 </footer>
+</body>
+</html>
