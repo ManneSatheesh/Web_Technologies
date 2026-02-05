@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Online Shopping App</title>
+	<link rel="stylesheet" type="text/css" href="23MID0179_style.css">
+</head>
+<body>
+	<header>
+		<h1>Interactive Shopping Page</h1>
+		<h3>JavaScript DOM & Events</h3>
+	</header>
+	
+	<div class="filter">
+		<label>Select Category: </label>
+		<select id="categoryfilter">
+			<option value="All">All</option>
+			<option value="Electronics">Electronics</option>
+			<option value="Accessories">Accessories</option>
+		</select>
+	</div>
+
+	<div class="main">
+		<div class="products" id="pdtlist"></div>
+		<div class="cart">
+			<h2>Shopping Cart Summary</h2>
+			<div id="cartItems"></div>
+			<hr>
+			<p>Subtotal: Rs.<span id="subtotal">0</span></p>
+			<p>Discount: Rs.<span id="discount">0</span></p>
+			<p><strong>Total: Rs.<span id="total">0</span></strong></p>
+
+			<input type="text" id="coupon" placeholder="Coupon Code">
+			<button onclick="applycoupon()">Apply Coupon</button>
+			<br><br>
+			<button class="checkout" onclick="checkout()">Checkout</button>
+		</div>
+	</div>
+
+	<script src="23MID0179_script.js"></script>
+</body>
+</html>
+	</div>
+</body>
+</html>
