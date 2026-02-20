@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Responsive Navigation Bar</title>
+	<style>
+	*{
+		margin:0;
+		padding:0;
+		box-sizing:border-box;
+		font-family:Arial, sans-serif;
+	}
+	header{
+		background:darkslategray;
+		color:white;
+		padding: 1rem 2rem;
+	}
+	.nav-container{
+		display: flex;
+		justify-content:space-between;
+
+	}
+	.logo{
+		font-size:1.5rem;
+		font-weight: bold;
+	}
+	nav ul{
+		list-style: none;
+		display: flex;
+		gap:1.5rem;
+	}
+	nav a{
+		color: white;
+		text-decoration: none;
+		transition: color 0.3s ease;
+		font-weight: bold;
+	}
+	nav a:hover{
+		color: gold;
+	}
+	.hamburger{
+		display: none;
+		flex-direction: column;
+		cursor: pointer;
+		gap: 5px;
+	}
+	.hamburger span{
+		width: 25px;
+		height: 3px;
+		background: white;
+	}
+	@media (max-width: 760px){
+		nav ul{
+			position:absolute;
+			top: 70px;
+			right: 0;
+			background: teal;
+			flex-direction: column;
+			width: 200px;
+			padding: 1rem;
+			display: none;
+		}
+		nav ul.active{
+			display: flex;
+		}
+		.hamburger{
+			display: flex;
+		}
+	}
+</style>
+</head>
+<body>
+<header>
+	<div class="nav-container">
+		<div class="logo">MyWebsite</div>
+		<nav>
+			<button class="hamburger" aria-label="Toggle Navigation">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<ul class="nav-links">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Services</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+<script>
+	 const hamburger=document.querySelector('.hamburger');
+	 const navlinks=document.querySelector('.nav-links');
+
+	 hamburger.addEventListener('click',()=>{
+	 	navlinks.classList.toggle('active');
+	 });
+	</script>
+</body>
+</html>

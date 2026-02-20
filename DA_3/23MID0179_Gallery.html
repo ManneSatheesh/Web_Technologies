@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Interactive Image Gallery</title>
+	<link rel="stylesheet" href="23MID0179_Gallery.css">
+</head>
+<body>
+
+	<header>
+		<h1>Interactive Image Gallery</h1>
+	</header>
+
+	<section class="gallery-section">
+		<!-- Category Filter Buttons -->
+		<div class="filter-buttons">
+			<button class="filter-btn active" data-category="all">All</button>
+			<button class="filter-btn" data-category="nature">Nature</button>
+			<button class="filter-btn" data-category="technology">Technology</button>
+			<button class="filter-btn" data-category="sports">Sports</button>
+		</div>
+
+		<!-- Image Gallery Grid -->
+		<div class="gallery">
+			<!-- Nature Images -->
+			<div class="gallery-item" data-category="nature">
+				<img src="https://picsum.photos/id/10/400/300" alt="Nature - Forest">
+				<div class="overlay"><span>Forest</span></div>
+			</div>
+			<div class="gallery-item" data-category="nature">
+				<img src="https://picsum.photos/id/15/400/300" alt="Nature - River">
+				<div class="overlay"><span>River</span></div>
+			</div>
+			<div class="gallery-item" data-category="nature">
+				<img src="https://picsum.photos/id/28/400/300" alt="Nature - Mountains">
+				<div class="overlay"><span>Mountains</span></div>
+			</div>
+
+			<!-- Technology Images -->
+			<div class="gallery-item" data-category="technology">
+				<img src="https://picsum.photos/id/0/400/300" alt="Technology - Laptop">
+				<div class="overlay"><span>Laptop</span></div>
+			</div>
+			<div class="gallery-item" data-category="technology">
+				<img src="https://picsum.photos/id/60/400/300" alt="Technology - Desk Setup">
+				<div class="overlay"><span>Desk Setup</span></div>
+			</div>
+			<div class="gallery-item" data-category="technology">
+				<img src="https://picsum.photos/id/180/400/300" alt="Technology - Circuit">
+				<div class="overlay"><span>Circuit</span></div>
+			</div>
+
+			<!-- Sports Images -->
+			<div class="gallery-item" data-category="sports">
+				<img src="https://picsum.photos/id/116/400/300" alt="Sports - Cycling">
+				<div class="overlay"><span>Cycling</span></div>
+			</div>
+			<div class="gallery-item" data-category="sports">
+				<img src="https://picsum.photos/id/136/400/300" alt="Sports - Surfing">
+				<div class="overlay"><span>Surfing</span></div>
+			</div>
+			<div class="gallery-item" data-category="sports">
+				<img src="https://picsum.photos/id/157/400/300" alt="Sports - Hiking">
+				<div class="overlay"><span>Hiking</span></div>
+			</div>
+		</div>
+	</section>
+    
+	<div class="lightbox" id="lightbox">
+		<button class="lightbox-close" aria-label="Close">&times;</button>
+		<button class="lightbox-prev" aria-label="Previous">&#10094;</button>
+		<img class="lightbox-img" id="lightbox-img" src="" alt="Lightbox Image">
+		<p class="lightbox-caption" id="lightbox-caption"></p>
+		<button class="lightbox-next" aria-label="Next">&#10095;</button>
+	</div>
+
+	<script src="23MID0179_Gallery.js"></script>
+</body>
+</html>
