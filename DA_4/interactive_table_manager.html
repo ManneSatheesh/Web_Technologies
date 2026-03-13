@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Table Manager</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: black;
+    }
+
+    .app {
+      width: 90%;
+      margin: 20px auto;
+      border: 1px solid gray;
+      padding: 12px;
+      background-color: white;
+    }
+
+    .head {
+      border-bottom: 1px solid gray;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .head h1 {
+      margin: 0;
+    }
+
+    .head p {
+      margin: 6px 0 0 0;
+      color: gray;
+    }
+
+    .controls {
+      border-bottom: 1px solid gray;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .controls label,
+    .search-wrap label {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .controls input,
+    .search-wrap input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 8px;
+      border: 1px solid gray;
+    }
+
+    .add-btn {
+      padding: 8px 12px;
+      border: 1px solid black;
+      background-color: lightblue;
+      color: black;
+    }
+
+    .search-wrap {
+      margin-bottom: 10px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      text-align: left;
+      border: 1px solid gray;
+      background-color: lightgray;
+      padding: 8px;
+    }
+
+    tbody td {
+      border: 1px solid gray;
+      padding: 8px;
+    }
+
+    tbody tr.hover-highlight {
+      background-color: lightyellow;
+    }
+
+    .delete-btn {
+      border: 1px solid black;
+      background-color: pink;
+      color: black;
+      padding: 6px 10px;
+    }
+
+    .empty-row td {
+      text-align: center;
+      color: gray;
+      font-style: italic;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <section class="app">
+    <header class="head">
+      <h1>Interactive Table Manager</h1>
+      <p>Manage student records by adding, searching, and deleting entries instantly.</p>
+    </header>
+
+    <form id="studentForm" class="controls">
+      <div>
+        <label for="studentName">Student Name</label>
+        <input type="text" id="studentName" placeholder="Enter name" required />
+      </div>
+      <div>
+        <label for="department">Department</label>
+        <input type="text" id="department" placeholder="Enter department" required />
+      </div>
+      <div>
+        <label for="marks">Marks</label>
+        <input type="number" id="marks" placeholder="0 - 100" min="0" max="100" required />
+      </div>
+      <button type="submit" class="add-btn">Add Record</button>
+    </form>
+
+    <div class="search-wrap">
+      <label for="searchInput">Search Students</label>
+      <input type="text" id="searchInput" placeholder="Type name, department, or marks" />
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Department</th>
+            <th>Marks</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <tr>
+            <td>Arjun Rao</td>
+            <td>Computer Science</td>
+            <td>91</td>
+            <td><button type="button" class="delete-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Sneha Iyer</td>
+            <td>Information Technology</td>
+            <td>87</td>
+            <td><button type="button" class="delete-btn">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    $(document).ready(function () {
+      const tableBody = $("#studentTableBody");
+
+      function refreshEmptyState() {
+        const rows = tableBody.find("tr").not(".empty-row");
+        const visibleRows = rows.filter(function () {
+          return $(this).css("display") !== "none";
+        });
+
+        tableBody.find(".empty-row").remove();
+
+        if (rows.length === 0 || visibleRows.length === 0) {
+          const text = rows.length === 0 ? "No student records yet." : "No matching records found.";
+          tableBody.append('<tr class="empty-row"><td colspan="4">' + text + "</td></tr>");
+        }
+      }
+
+      $("#studentForm").on("submit", function (event) {
+        event.preventDefault();
+
+        const name = $("#studentName").val().trim();
+        const dept = $("#department").val().trim();
+        const marks = $("#marks").val().trim();
+
+        if (!name || !dept || marks === "") {
+          return;
+        }
+
+        const marksNum = Number(marks);
+        if (Number.isNaN(marksNum) || marksNum < 0 || marksNum > 100) {
+          alert("Marks should be between 0 and 100.");
+          return;
+        }
+
+        const row = "<tr>" +
+          "<td>" + $("<div>").text(name).html() + "</td>" +
+          "<td>" + $("<div>").text(dept).html() + "</td>" +
+          "<td>" + marksNum + "</td>" +
+          '<td><button type="button" class="delete-btn">Delete</button></td>' +
+          "</tr>";
+
+        tableBody.append(row);
+
+        this.reset();
+        $("#searchInput").trigger("input");
+      });
+
+      tableBody.on("click", ".delete-btn", function () {
+        const isConfirmed = confirm("Are you sure you want to delete this record?");
+        if (isConfirmed) {
+          $(this).closest("tr").remove();
+          refreshEmptyState();
+        }
+      });
+
+      $("#searchInput").on("input", function () {
+        const query = $(this).val().toLowerCase().trim();
+
+        tableBody.find("tr").not(".empty-row").each(function () {
+          const rowText = $(this).text().toLowerCase();
+          $(this).toggle(rowText.includes(query));
+        });
+
+        refreshEmptyState();
+      });
+
+      tableBody.on("mouseenter", "tr", function () {
+        if (!$(this).hasClass("empty-row")) {
+          $(this).addClass("hover-highlight");
+        }
+      });
+
+      tableBody.on("mouseleave", "tr", function () {
+        $(this).removeClass("hover-highlight");
+      });
+
+      refreshEmptyState();
+    });
+  </script>
+</body>
+</html>
